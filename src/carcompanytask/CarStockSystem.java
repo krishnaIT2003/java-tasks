@@ -18,6 +18,7 @@ public static void main(String[] args) {
        System.out.println("enter carType ");
      String carType=sc.next();
      carBookMangement.bookModel(carType,sc);
+     carBookMangement.storePurchaseDetails(userName, carType);
     }
 	
     

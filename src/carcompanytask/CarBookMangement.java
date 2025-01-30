@@ -1,5 +1,9 @@
 package carcompanytask;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +14,7 @@ import java.util.stream.Collectors;
 public class CarBookMangement {
 	Map<String,Map<String,List<Car>>>carStocks=new HashMap<>();
 	 	
-	
+	String modelName;
 	
 	
 	
@@ -27,7 +31,7 @@ public class CarBookMangement {
 			return;
 		}
 		System.out.println("enter model");
-		String modelName=sc.next();
+		 modelName=sc.next();
 		boolean anyMatch = list.stream().anyMatch(n->n.getName().equalsIgnoreCase(modelName));
 		if(anyMatch) {
 			System.out.println("sucessfull purchased the model "+modelName);
@@ -88,5 +92,14 @@ public class CarBookMangement {
 	        System.out.println((count++)+"- " + type);
 	    }
 	}
+	 public void storePurchaseDetails(String userName, String carType) {
+	        File file = new File("purchase_log.txt");
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+	            writer.write("Customer Name: " + userName + ", Car Type: " + carType + ", Model: " + modelName + "\n");
+	            System.out.println("Purchase recorded: " + userName + " bought a " + modelName + " " + carType);
+	        } catch (IOException e) {
+	            System.out.println("Error saving purchase details: " + e.getMessage());
+	        }
+	    }
     
 }

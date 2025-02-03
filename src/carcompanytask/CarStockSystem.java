@@ -12,11 +12,25 @@ public static void main(String[] args) {
     while(true) {
     	 System.out.print("Enter your name to register: ");
          String userName = sc.next();
+         if (userName.matches(".*\\d.*")) {
+             System.out.println("Invalid username: Username should not contain numbers.");
+             break;
+         } else {
+             System.out.println("Valid username: " + userName);
+         }
+         
          System.out.println("Hi, " + userName + "! Here are the mercedes available car models:");
          carBookMangement.displayCarTypes("Mercedes");
          sc.nextLine();
-       System.out.println("enter carType ");
+               System.out.println("enter carType ");
      String carType=sc.next();
+     if (carType.matches(".*\\d.*")) {
+         System.out.println("Invalid cartype.");
+         break;
+     } else {
+         System.out.println("Valid username: " + userName);
+     }
+
      carBookMangement.bookModel(carType,sc);
      carBookMangement.storePurchaseDetails(userName, carType);
     }

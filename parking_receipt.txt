@@ -1,4 +1,4 @@
 Parking slot Allocations 
 Slot No: 1 | Vehicle Type: Bike | Vehicle Reg No: KA234
-Slot No: 2 | Vehicle Type: Car | Vehicle Reg No: KD5678
-Slot No: 3 | Vehicle Type: Bike | Vehicle Reg No: F9101
+Slot No: 2 | Vehicle Type: Bike | Vehicle Reg No: F9101
+Slot No: 1 | Vehicle Type: Car | Vehicle Reg No: KD5678

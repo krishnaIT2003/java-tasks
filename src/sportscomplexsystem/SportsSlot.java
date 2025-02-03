@@ -5,81 +5,67 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class SportsSlot {
-	Map<String,Map<Integer,String>> sportsSlots=new HashMap<>();
-	
-	
-	public void bookBadmintonSlot(Scanner sc) {
-		Map<Integer, String> badmintonSlots = sportsSlots.get("Badminton");
-		while(true) {
-			System.out.println(badmintonSlots.values());
-			System.out.println("enter slot to book");
-			int slotBook=sc.nextInt();
-			
-			
-			if(badmintonSlots.containsKey(slotBook)) {
-				String string = badmintonSlots.get(slotBook);
-			sportsSlots.remove(badmintonSlots.remove(slotBook));
-				System.out.println("sucessfully booked badminton slot  "+string);
-				break;
-			}
-			else {
-				System.out.println("unable to find slot please choose the available slots");
-			}
-		}
-		
-	}
-	public void bookFootBallSlot(Scanner sc) {
-		Map<Integer, String> footBallSlots = sportsSlots.get("FootBall");
-		while(true) {
-			System.out.println(footBallSlots.values());
-			System.out.println("enter available slot number to book");
-			int slotBook=sc.nextInt();
-			if(footBallSlots.containsKey(slotBook)) {
-				String string = footBallSlots.get(slotBook);
-				sportsSlots.remove(footBallSlots.remove(slotBook));
-				System.out.println("sucessfully booked football slot "+string );
-				break;
-			}
-			else {
-				System.out.println("unable to find slot please choose the available slots");
-			}
-		}
-	}
-	public void bookCricketSlot(Scanner sc) {
-		Map<Integer, String> cricketSlots = sportsSlots.get("Cricket");
-		while(true) {
-			System.out.println(cricketSlots.values());
-			System.out.println("enter available slot number to book");
-			int slotBook=sc.nextInt();
-			if(cricketSlots.containsKey(slotBook)) {
-				String string = cricketSlots.get(slotBook);
-				sportsSlots.remove(cricketSlots.remove(slotBook));
-				System.out.println("sucessfully booked cricket slot "+string);
-				break;
-			}
-			else {
-				System.out.println("unable to find slot please choose the available slots");
-			}
-			
-		}
-	}
-	
-	
-	public void initializeSlots() {
-		Map<Integer,String> badmintonMap=new HashMap<Integer, String>();
-		for(int i=1;i<=10;i++) {
-			badmintonMap.put(i, "slot"+i+" (9:00 to 10:00)");
-		}
-		sportsSlots.put("Badminton", badmintonMap);
-		Map<Integer,String> footBallMap=new HashMap<Integer, String>();
-		for(int i=1;i<=20;i++) {
-			footBallMap.put(i, "slot"+i+" (10:00 to 10:30)");
-		}
-		sportsSlots.put("FootBall", footBallMap);
-		Map<Integer,String> cricketMap=new HashMap<Integer, String>();
-		for(int i=1;i<=5;i++) {
-			cricketMap.put(i, "slot"+i+" (10:30 to 12:30)");
-		}
-		sportsSlots.put("Cricket", cricketMap);
-	}
+    Map<String, Map<Integer, String>> sportsSlots = new HashMap<>();
+
+    public void bookBadmintonSlot(Scanner sc) {
+        bookSlot(sc, "Badminton");
+    }
+
+    public void bookFootBallSlot(Scanner sc) {
+        bookSlot(sc, "FootBall");
+    }
+
+    public void bookCricketSlot(Scanner sc) {
+        bookSlot(sc, "Cricket");
+    }
+
+    private void bookSlot(Scanner sc, String sport) {
+        Map<Integer, String> slots = sportsSlots.get(sport);
+        if (slots == null || slots.isEmpty()) {
+            System.out.println("No available slots for " + sport + ". Please try another sport.");
+            return;
+        }
+
+        while (true) {
+            System.out.println("Available slots: " + slots.values());
+            System.out.println("Enter the slot number to book:");
+
+            if (!sc.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a valid slot number.");
+                sc.next(); // Consume invalid input
+                continue;
+            }
+
+            int slotNumber = sc.nextInt();
+
+            if (slots.containsKey(slotNumber)) {
+                String slotDetails = slots.get(slotNumber);
+                slots.remove(slotNumber); // Remove the slot after booking
+                System.out.println("Successfully booked " + sport + " slot: " + slotDetails);
+                break;
+            } else {
+                System.out.println("Slot not available. Please choose from the available slots.");
+            }
+        }
+    }
+
+    public void initializeSlots() {
+        Map<Integer, String> badmintonMap = new HashMap<>();
+        for (int i = 1; i <= 10; i++) {
+            badmintonMap.put(i, "Slot " + i + " (9:00 to 10:00)");
+        }
+        sportsSlots.put("Badminton", badmintonMap);
+
+        Map<Integer, String> footBallMap = new HashMap<>();
+        for (int i = 1; i <= 20; i++) {
+            footBallMap.put(i, "Slot " + i + " (10:00 to 10:30)");
+        }
+        sportsSlots.put("FootBall", footBallMap);
+
+        Map<Integer, String> cricketMap = new HashMap<>();
+        for (int i = 1; i <= 5; i++) {
+            cricketMap.put(i, "Slot " + i + " (10:30 to 12:30)");
+        }
+        sportsSlots.put("Cricket", cricketMap);
+    }
 }

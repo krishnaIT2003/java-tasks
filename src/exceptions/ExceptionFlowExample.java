@@ -8,7 +8,7 @@ public class ExceptionFlowExample {
 		int arr[]= {1,2,3};
 		try {
 			File f=new File("hey.txt");
-			
+		
 			System.out.println(arr[5]);
 			System.out.println(arr[1]/0);
 			 f.createNewFile(); 

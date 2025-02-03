@@ -13,9 +13,10 @@ public static void main(String[] args) throws InvalidEmployee{
 	employees.add(new Employee(103, "tharun", "hyderabad"));
 	Scanner sc=new Scanner(System.in);
 	System.out.println("enter employee id ");
-	int id=sc.nextInt();
+	
 
 	try {
+		int id=sc.nextInt();
 		if(employees.stream().anyMatch((a)->id==a.getId())) {
 			System.out.println("Welcome to office");
 		}
@@ -25,6 +26,9 @@ public static void main(String[] args) throws InvalidEmployee{
 	}
 	catch(InvalidEmployee e) {
 		System.out.println(e.getMessage());
+	}
+	catch(Exception e) {
+		System.out.println(e);
 	}
 }
 }
